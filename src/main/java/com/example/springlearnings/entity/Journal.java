@@ -1,9 +1,5 @@
 package com.example.springlearnings.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.stereotype.Component;
 
 public class Journal {
     String id;
