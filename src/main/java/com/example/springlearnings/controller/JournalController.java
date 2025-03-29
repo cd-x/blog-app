@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(path = "/journal")
@@ -28,8 +29,12 @@ public class JournalController {
     }
     @GetMapping(path = "/{id}")
     public ResponseEntity<Journal> getJournalById(@PathVariable String id){
-        Journal journal = journalManagementService.getJournalById(id);
-        return new ResponseEntity<>(journal, HttpStatus.OK);
+        try {
+            Journal journal = journalManagementService.getJournalById(id);
+            return new ResponseEntity<>(journal, HttpStatus.OK);
+        }catch (NoSuchElementException noSuchElementException){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
     @PostMapping
     public ResponseEntity<String> createJournal(@RequestBody JournalPayload payload){

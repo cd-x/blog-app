@@ -1,7 +1,11 @@
 package com.example.springlearnings.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class Journal {
+    @Id
     String id;
     String title;
     String content;
