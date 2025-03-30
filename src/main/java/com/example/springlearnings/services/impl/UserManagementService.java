@@ -26,7 +26,7 @@ public class UserManagementService implements IUserManagementService {
 
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
-        if(repository.existsById(user.getId()))
+        if(repository.isUserRegistered(user.getUsername()))
             throw new UserAlreadyExistException();
         else
             repository.save(user);
