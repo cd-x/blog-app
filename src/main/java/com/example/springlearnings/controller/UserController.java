@@ -48,8 +48,8 @@ public class UserController {
         userManagementService.deleteUser(username);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-    @GetMapping(path = "/journal")
-    public ResponseEntity<List<Journal>> getJournalsByUsername(String username){
+    @GetMapping(path = "/{username}/journal")
+    public ResponseEntity<List<Journal>> getJournalsByUsername(@PathVariable String username){
         User user = userManagementService.getUserByUserName(username);
         return new ResponseEntity<>(user.getJournalList(), HttpStatus.OK);
     }
