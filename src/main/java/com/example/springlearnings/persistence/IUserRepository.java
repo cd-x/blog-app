@@ -22,6 +22,6 @@ public interface IUserRepository extends MongoRepository<User, ObjectId> {
 
     @Transactional
     @Query(value = "{'username': ?0}")
-    @Update("{'$push: {'journalList': ?1}}")
+    @Update(value = "{'$push: {'journalList': ?1}}")
     void updateJournalList(String username, Journal journal);
 }

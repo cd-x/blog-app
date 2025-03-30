@@ -9,21 +9,21 @@ public class Journal {
     String id;
     String title;
     String content;
-    String authorUserName;
+    String username;
 
-    public String getAuthorUserName() {
-        return authorUserName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAuthorUserName(String authorUserName) {
-        this.authorUserName = authorUserName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Journal(String id, String title, String content, String authorUserName) {
+    public Journal(String id, String title, String content, String username) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.authorUserName = authorUserName;
+        this.username = username;
     }
 
     public String getId() {
