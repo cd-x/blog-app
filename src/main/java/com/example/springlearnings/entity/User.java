@@ -17,7 +17,7 @@ public class User {
 
     @Indexed(unique = true)
     @NonNull
-    private String userName;
+    private String username;
 
     @NonNull
     private String password;
@@ -42,12 +42,12 @@ public class User {
     }
 
     @NonNull
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(@NonNull String userName) {
-        this.userName = userName;
+    public void setUsername(@NonNull String username) {
+        this.username = username;
     }
 
     @NonNull
