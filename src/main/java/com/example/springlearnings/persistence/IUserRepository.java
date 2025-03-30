@@ -9,7 +9,8 @@ public interface IUserRepository extends MongoRepository<User, ObjectId> {
     @Query(value = "{ 'username' : ?0 }")
     User findByUsername(String username);
 
-    //boolean existsByUsername(String username);
+    @Query(value = "{ 'username' : ?0 }", exists = true)
+    boolean isUserRegistered(String username);
 
     @Query(value = "{ 'username' : ?0 }", delete = true)
     void deleteByUsername(String username);
