@@ -1,6 +1,7 @@
 package com.example.springlearnings.controller;
 
 
+import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
 import com.example.springlearnings.services.interfaces.IUserManagementService;
@@ -46,5 +47,10 @@ public class UserController {
         logger.debug("deleting user with id: {}", username);
         userManagementService.deleteUser(username);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+    @GetMapping(path = "/journal")
+    public ResponseEntity<List<Journal>> getJournalsByUsername(String username){
+        User user = userManagementService.getUserByUserName(username);
+        return new ResponseEntity<>(user.getJournalList(), HttpStatus.OK);
     }
 }

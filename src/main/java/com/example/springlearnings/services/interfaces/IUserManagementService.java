@@ -1,5 +1,6 @@
 package com.example.springlearnings.services.interfaces;
 
+import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
 import org.springframework.stereotype.Service;
@@ -12,4 +13,5 @@ public interface IUserManagementService {
     User getUserByUserName(String username);
     void createUser(User user) throws UserAlreadyExistException;
     void deleteUser(String username);
+    void addJournalToList(String username, Journal journal);
 }

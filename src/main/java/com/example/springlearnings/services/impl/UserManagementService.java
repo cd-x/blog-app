@@ -1,5 +1,6 @@
 package com.example.springlearnings.services.impl;
 
+import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.persistence.IUserRepository;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
@@ -35,5 +36,10 @@ public class UserManagementService implements IUserManagementService {
     @Override
     public void deleteUser(String username) {
         repository.deleteByUsername(username);
+    }
+
+    @Override
+    public void addJournalToList(String username, Journal journal) {
+        repository.updateJournalList(username, journal);
     }
 }
