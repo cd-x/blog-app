@@ -10,5 +10,5 @@ public interface IJournalManagementService {
     Journal getJournalById(String id);
     String createJournal(JournalPayload payload);
     void deleteJournal(String id);
-    void updateJournal(String id, String title, String content);
+    void updateJournal(String journalId, String username, String content);
 }

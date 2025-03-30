@@ -9,11 +9,21 @@ public class Journal {
     String id;
     String title;
     String content;
+    String authorUserName;
 
-    public Journal(String id, String title, String content) {
+    public String getAuthorUserName() {
+        return authorUserName;
+    }
+
+    public void setAuthorUserName(String authorUserName) {
+        this.authorUserName = authorUserName;
+    }
+
+    public Journal(String id, String title, String content, String authorUserName) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.authorUserName = authorUserName;
     }
 
     public String getId() {
