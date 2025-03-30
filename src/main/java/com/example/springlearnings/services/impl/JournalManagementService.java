@@ -33,8 +33,8 @@ public class JournalManagementService implements IJournalManagementService {
     @Override
     public String createJournal(JournalPayload journalPayload) {
         String id = UUID.randomUUID().toString();
-        Journal journal = journalRepository.save(new Journal(id, journalPayload.getTitle(), journalPayload.getContent(), journalPayload.getAuthorUserName()));
-        userManagementService.addJournalToList(journalPayload.getAuthorUserName(), journal);
+        Journal journal = journalRepository.save(new Journal(id, journalPayload.getTitle(), journalPayload.getContent(), journalPayload.getUsername()));
+        userManagementService.addJournalToList(journalPayload.getUsername(), journal);
         logger.debug("New journal created with id: {}", journal.getId());
         return journal.getId();
     }
