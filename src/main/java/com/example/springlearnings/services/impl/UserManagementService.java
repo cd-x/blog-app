@@ -40,6 +40,8 @@ public class UserManagementService implements IUserManagementService {
 
     @Override
     public void addJournalToList(String username, Journal journal) {
-        repository.updateJournalList(username, journal);
+        User user = repository.findByUsername(username);
+        user.getJournalList().add(journal);
+        repository.save(user);
     }
 }

@@ -50,7 +50,7 @@ public class JournalController {
     @PutMapping
     public ResponseEntity<String> updateJournal(@RequestBody Journal payload){
         LOGGER.debug("JournalController::updateJournal with payload: {}", payload);
-        journalManagementService.updateJournal(payload.getId(), payload.getTitle(), payload.getContent());
+        journalManagementService.updateJournal(payload.getId(), payload.getUsername(), payload.getContent());
         return new ResponseEntity<>(payload.getId(), HttpStatus.CREATED);
     }
  }

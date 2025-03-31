@@ -19,9 +19,4 @@ public interface IUserRepository extends MongoRepository<User, ObjectId> {
 
     @Query(value = "{ 'username' : ?0 }", delete = true)
     void deleteByUsername(String username);
-
-    @Transactional
-    @Query(value = "{'username': ?0}")
-    @Update(value = "{'$push: {'journalList': ?1}}")
-    void updateJournalList(String username, Journal journal);
 }

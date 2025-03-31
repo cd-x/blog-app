@@ -7,8 +7,4 @@ import org.springframework.data.mongodb.repository.Update;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface IJournalRepository extends MongoRepository<Journal, String> {
-    @Transactional
-    @Query(value = "{'_id':?0, 'username': ?1}")
-    @Update("{'content' : ?2}")
-    public void updateContent(String journalId, String username, String content);
 }

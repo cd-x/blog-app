@@ -32,7 +32,6 @@ public class JournalManagementService implements IJournalManagementService {
     }
 
     @Override
-    @Transactional
     public String createJournal(JournalPayload journalPayload) {
         String id = UUID.randomUUID().toString();
         Journal journal = journalRepository.save(new Journal(id, journalPayload.getTitle(), journalPayload.getContent(), journalPayload.getUsername()));
@@ -48,7 +47,11 @@ public class JournalManagementService implements IJournalManagementService {
 
     @Override
     public void updateJournal(String journalId, String username, String content) {
-        journalRepository.updateContent(journalId, username, content);
+        Journal journal = journalRepository.findById(journalId).orElse(null);
+        if(Objects.nonNull(journal)){
+            journal.setContent(content);
+            journalRepository.save(journal);
+        }
         logger.debug("journal with id:{} and username: {} updated.", journalId, username);
     }
 }
