@@ -4,6 +4,7 @@ import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.persistence.IUserRepository;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
+import com.example.springlearnings.services.errorhandling.exceptions.UserDoesNotExistException;
 import com.example.springlearnings.services.interfaces.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import java.util.List;
 public class UserManagementService implements IUserManagementService {
     @Autowired
     private IUserRepository repository;
+    @Autowired
+    private TransactionService transactionService;
 
     @Override
     public List<User> getAllUsers() {
@@ -37,13 +40,5 @@ public class UserManagementService implements IUserManagementService {
     @Override
     public void deleteUser(String username) {
         repository.deleteByUsername(username);
-    }
-
-    @Override
-    @Transactional
-    public void addJournalToList(String username, Journal journal) {
-        User user = repository.findByUsername(username);
-        user.getJournalList().add(journal);
-        repository.save(user);
     }
 }
