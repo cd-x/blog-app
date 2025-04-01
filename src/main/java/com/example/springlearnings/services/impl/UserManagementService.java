@@ -7,6 +7,7 @@ import com.example.springlearnings.services.errorhandling.exceptions.UserAlready
 import com.example.springlearnings.services.interfaces.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class UserManagementService implements IUserManagementService {
     }
 
     @Override
+    @Transactional
     public void addJournalToList(String username, Journal journal) {
         User user = repository.findByUsername(username);
         user.getJournalList().add(journal);
