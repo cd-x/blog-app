@@ -22,6 +22,16 @@ public class User {
     @NonNull
     private String password;
 
+    private List<String> roles;
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
     @DBRef
     private List<Journal> journalList = new ArrayList<>();
 

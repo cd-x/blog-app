@@ -1,15 +1,14 @@
 package com.example.springlearnings.services.impl;
 
-import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.persistence.IUserRepository;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
-import com.example.springlearnings.services.errorhandling.exceptions.UserDoesNotExistException;
 import com.example.springlearnings.services.interfaces.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,6 +17,8 @@ public class UserManagementService implements IUserManagementService {
     private IUserRepository repository;
     @Autowired
     private TransactionService transactionService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -31,7 +32,9 @@ public class UserManagementService implements IUserManagementService {
 
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
-        if(repository.isUserRegistered(user.getUsername()))
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Collections.singletonList("USER"));
+        if (repository.isUserRegistered(user.getUsername()))
             throw new UserAlreadyExistException();
         else
             repository.save(user);
