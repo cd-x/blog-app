@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 public class JournalController {
     @Autowired
     private IJournalManagementService journalManagementService;
-    private Logger LOGGER = LoggerFactory.getLogger(JournalController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(JournalController.class);
 
     @GetMapping
     public ResponseEntity<List<Journal>> getJournals() {

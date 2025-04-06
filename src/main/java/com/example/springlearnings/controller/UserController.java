@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,35 +22,41 @@ public class UserController {
     private IUserManagementService userManagementService;
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @GetMapping
-    public List<User> getAllUsers(){
+    @GetMapping(path = "/all")
+    public List<User> getAllUsers() {
         List<User> users = userManagementService.getAllUsers();
         logger.debug("getAllUsers has users :{}", users.size());
         return users;
     }
 
-    @GetMapping(path = "/{username}")
-    public User getUserById(@PathVariable String username){
+    @GetMapping
+    public User getUserById() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         logger.debug("retrieving user with username: {}", username);
         return userManagementService.getUserByUserName(username);
     }
+
     @PostMapping
-    public ResponseEntity<?> registerUser(@RequestBody User user){
+    public ResponseEntity<?> registerUser(@RequestBody User user) {
         try {
             userManagementService.createUser(user);
             return ResponseEntity.status(HttpStatus.CREATED).build();
-        }catch (UserAlreadyExistException userAlreadyExistException){
+        } catch (UserAlreadyExistException userAlreadyExistException) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(userAlreadyExistException.getMessage());
         }
     }
-    @DeleteMapping(path = "/{username}")
-    public ResponseEntity<?> deleteUser(@PathVariable String username){
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         logger.debug("deleting user with id: {}", username);
         userManagementService.deleteUser(username);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-    @GetMapping(path = "/{username}/journal")
-    public ResponseEntity<List<Journal>> getJournalsByUsername(@PathVariable String username){
+
+    @GetMapping(path = "/journal")
+    public ResponseEntity<List<Journal>> getJournalsByUsername() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userManagementService.getUserByUserName(username);
         return new ResponseEntity<>(user.getJournalList(), HttpStatus.OK);
     }
