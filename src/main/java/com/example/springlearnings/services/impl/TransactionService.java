@@ -5,7 +5,6 @@ import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.persistence.IJournalRepository;
 import com.example.springlearnings.persistence.IUserRepository;
-import com.example.springlearnings.services.interfaces.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +19,10 @@ public class TransactionService {
     private IJournalRepository journalRepository;
 
     @Transactional
-    public String createJournal(JournalPayload journalPayload){
+    public String createJournal(JournalPayload journalPayload, String username) {
         String id = UUID.randomUUID().toString();
-        Journal journal = journalRepository.save(new Journal(id, journalPayload.getTitle(), journalPayload.getContent(), journalPayload.getUsername()));
-        User user = repository.findByUsername(journalPayload.getUsername());
+        Journal journal = journalRepository.save(new Journal(id, journalPayload.getTitle(), journalPayload.getContent(), username));
+        User user = repository.findByUsername(username);
         user.getJournalList().add(journal);
         repository.save(user);
         return journal.getId();

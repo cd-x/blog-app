@@ -3,7 +3,6 @@ package com.example.springlearnings.services.impl;
 import com.example.springlearnings.api.models.JournalPayload;
 import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.persistence.IJournalRepository;
-import com.example.springlearnings.services.errorhandling.exceptions.UserDoesNotExistException;
 import com.example.springlearnings.services.interfaces.IJournalManagementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,7 @@ import java.util.Objects;
 public class JournalManagementService implements IJournalManagementService {
     @Autowired
     private TransactionService transactionService;
-    
+
     @Autowired
     private IJournalRepository journalRepository;
     private final Logger logger = LoggerFactory.getLogger(JournalManagementService.class);
@@ -34,14 +33,10 @@ public class JournalManagementService implements IJournalManagementService {
     }
 
     @Override
-    public String createJournal(JournalPayload journalPayload) throws UserDoesNotExistException {
-        try {
-            String id = transactionService.createJournal(journalPayload);
-            logger.debug("New journal created with id: {}", id);
-            return id;
-        } catch (RuntimeException runtimeException) {
-            throw new UserDoesNotExistException();
-        }
+    public String createJournal(JournalPayload journalPayload, String username) {
+        String id = transactionService.createJournal(journalPayload, username);
+        logger.debug("New journal created with id: {}", id);
+        return id;
     }
 
     @Override
@@ -50,12 +45,12 @@ public class JournalManagementService implements IJournalManagementService {
     }
 
     @Override
-    public void updateJournal(String journalId, String username, String content) {
+    public void updateJournal(String journalId, String content) {
         Journal journal = journalRepository.findById(journalId).orElse(null);
         if (Objects.nonNull(journal)) {
             journal.setContent(content);
             journalRepository.save(journal);
         }
-        logger.debug("journal with id:{} and username: {} updated.", journalId, username);
+        logger.debug("journal with id:{} updated.", journalId);
     }
 }

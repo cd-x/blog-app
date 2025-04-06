@@ -4,15 +4,7 @@ package com.example.springlearnings.api.models;
 public class JournalPayload {
     String title;
     String content;
-    String username;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getTitle() {
         return title;
@@ -27,7 +19,6 @@ public class JournalPayload {
         return "JournalPayload{" +
                 "title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", authorUserName='" + username + '\'' +
                 '}';
     }
 

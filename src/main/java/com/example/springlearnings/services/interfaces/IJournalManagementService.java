@@ -1,15 +1,18 @@
 package com.example.springlearnings.services.interfaces;
 
-import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.api.models.JournalPayload;
-import com.example.springlearnings.services.errorhandling.exceptions.UserDoesNotExistException;
+import com.example.springlearnings.entity.Journal;
 
 import java.util.List;
 
 public interface IJournalManagementService {
     List<Journal> getJournals();
+
     Journal getJournalById(String id);
-    String createJournal(JournalPayload payload) throws UserDoesNotExistException;
+
+    String createJournal(JournalPayload payload, String username);
+
     void deleteJournal(String id);
-    void updateJournal(String journalId, String username, String content);
+
+    void updateJournal(String journalId, String content);
 }

@@ -32,7 +32,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
     }
 
     private Authentication createAuthenticationOnSuccess(Authentication authentication, UserDetails userDetails) {
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), authentication.getCredentials(), authentication.getAuthorities());
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails.getUsername(), authentication.getCredentials(), userDetails.getAuthorities());
         token.setDetails(authentication.getDetails());
         return token;
     }

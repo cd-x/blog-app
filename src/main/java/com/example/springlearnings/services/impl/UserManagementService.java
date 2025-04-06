@@ -7,6 +7,7 @@ import com.example.springlearnings.services.interfaces.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +34,7 @@ public class UserManagementService implements IUserManagementService {
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Collections.singletonList("USER"));
+        if (CollectionUtils.isEmpty(user.getRoles())) user.setRoles(Collections.singletonList("USER"));
         if (repository.isUserRegistered(user.getUsername()))
             throw new UserAlreadyExistException();
         else
