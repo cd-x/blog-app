@@ -1,13 +1,14 @@
 package com.example.springlearnings;
 
+import com.example.springlearnings.setup.TestSetup;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class SpringlearningsApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+class SpringlearningsApplicationTests extends TestSetup {
+
+
+    @Test
+    void contextLoads() {
+    }
 
 }
