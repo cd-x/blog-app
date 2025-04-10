@@ -15,6 +15,22 @@ public class User {
     @Id
     private ObjectId id;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isSentimentAnalysis() {
+        return sentimentAnalysis;
+    }
+
+    public void setSentimentAnalysis(boolean sentimentAnalysis) {
+        this.sentimentAnalysis = sentimentAnalysis;
+    }
+
     @Indexed(unique = true)
     @NonNull
     private String username;
@@ -23,6 +39,8 @@ public class User {
     private String password;
 
     private List<String> roles;
+    private String email;
+    private boolean sentimentAnalysis;
 
     public List<String> getRoles() {
         return roles;

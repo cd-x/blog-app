@@ -17,6 +17,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 public class TestSetup {
     @Mock
     HttpServletRequest httpServletRequest;
+
     @Mock
     AuthenticationManager authenticationManager;
 
@@ -25,6 +26,7 @@ public class TestSetup {
 
     @MockitoBean(name = "mvcHandlerMappingIntrospector")
     HandlerMappingIntrospector mvcHandlerMappingIntrospector;
+    
     @MockitoBean
     MongoDatabaseFactory mongoDatabaseFactory;
 

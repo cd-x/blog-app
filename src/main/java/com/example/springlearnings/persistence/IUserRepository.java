@@ -1,13 +1,9 @@
 package com.example.springlearnings.persistence;
-import com.example.springlearnings.entity.Journal;
+
 import com.example.springlearnings.entity.User;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 public interface IUserRepository extends MongoRepository<User, ObjectId> {
 
