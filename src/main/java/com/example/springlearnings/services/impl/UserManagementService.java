@@ -2,6 +2,7 @@ package com.example.springlearnings.services.impl;
 
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.persistence.IUserRepository;
+import com.example.springlearnings.persistence.UserRepositoryImpl;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
 import com.example.springlearnings.services.interfaces.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,15 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class UserManagementService implements IUserManagementService {
     @Autowired
     private IUserRepository repository;
+    @Autowired
+    private UserRepositoryImpl userRepository;
     @Autowired
     private TransactionService transactionService;
     @Autowired
@@ -45,4 +50,13 @@ public class UserManagementService implements IUserManagementService {
     public void deleteUser(String username) {
         repository.deleteByUsername(username);
     }
+
+    @Override
+    public Map<String, String> getUsernameEmailMapWithSentimentOn() {
+        return userRepository.getUserWithSentimentAnalysis().stream()
+                .map(user -> Map.entry(user.getUsername(), user.getEmail()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+
 }

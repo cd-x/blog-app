@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotion Metrics Report</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+<div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+    <h2 style="color: #333333;">Hello {{username}},</h2>
+    <p style="font-size: 16px; color: #555;">
+        Here's your latest emotional sentiment report. Below is a breakdown of your emotions and their corresponding
+        scores.
+    </p>
+
+    <!-- Chart placeholder -->
+    <div style="text-align: center; margin: 30px 0;">
+        <img src="{{chartUrlOrBase64}}" alt="Emotion Chart"
+             style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px;"/>
+    </div>
+
+    <!-- Table -->
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+        <tr style="background-color: #f1f1f1;">
+            <th style="padding: 10px; text-align: left;">Emotion</th>
+            <th style="padding: 10px; text-align: right;">Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each metrics}}
+        <tr>
+            <td style="padding: 8px; border-bottom: 1px solid #eee;">{{label}}</td>
+            <td style="padding: 8px; text-align: right; border-bottom: 1px solid #eee;">{{score}}</td>
+        </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
+    <p style="font-size: 14px; color: #999; margin-top: 40px;">Generated automatically by Emotion Insights Engine.</p>
+</div>
+</body>
+</html>
