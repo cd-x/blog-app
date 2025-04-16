@@ -1,0 +1,114 @@
+[
+  {
+    "label": "love",
+    "score": 0.9548965692520142
+  },
+  {
+    "label": "admiration",
+    "score": 0.040065694600343704
+  },
+  {
+    "label": "approval",
+    "score": 0.0195122379809618
+  },
+  {
+    "label": "gratitude",
+    "score": 0.00971519947052002
+  },
+  {
+    "label": "neutral",
+    "score": 0.009210405871272087
+  },
+  {
+    "label": "joy",
+    "score": 0.009172816760838032
+  },
+  {
+    "label": "optimism",
+    "score": 0.008506129495799541
+  },
+  {
+    "label": "desire",
+    "score": 0.00580723537132144
+  },
+  {
+    "label": "annoyance",
+    "score": 0.004903927445411682
+  },
+  {
+    "label": "caring",
+    "score": 0.004867045674473047
+  },
+  {
+    "label": "disapproval",
+    "score": 0.004542140755802393
+  },
+  {
+    "label": "realization",
+    "score": 0.004343091044574976
+  },
+  {
+    "label": "anger",
+    "score": 0.0042662909254431725
+  },
+  {
+    "label": "sadness",
+    "score": 0.003667273325845599
+  },
+  {
+    "label": "excitement",
+    "score": 0.0035446584224700928
+  },
+  {
+    "label": "amusement",
+    "score": 0.0034158325288444757
+  },
+  {
+    "label": "disappointment",
+    "score": 0.0034129784908145666
+  },
+  {
+    "label": "confusion",
+    "score": 0.003042550990357995
+  },
+  {
+    "label": "disgust",
+    "score": 0.002353167859837413
+  },
+  {
+    "label": "curiosity",
+    "score": 0.002317017875611782
+  },
+  {
+    "label": "surprise",
+    "score": 0.001679107779636979
+  },
+  {
+    "label": "remorse",
+    "score": 0.0014816722832620144
+  },
+  {
+    "label": "fear",
+    "score": 0.000979619100689888
+  },
+  {
+    "label": "nervousness",
+    "score": 0.0005584568134509027
+  },
+  {
+    "label": "embarrassment",
+    "score": 0.0005350214196369052
+  },
+  {
+    "label": "grief",
+    "score": 0.0004287623451091349
+  },
+  {
+    "label": "pride",
+    "score": 0.0004038376791868359
+  },
+  {
+    "label": "relief",
+    "score": 0.0003594955778680742
+  }
+]
