@@ -33,7 +33,9 @@ public class PublishSentimentService implements IPublishSentimentService {
             EmailTemplate emailTemplate = buildEmailTemplateByUsername(username, usernameEmailMap.get(username));
             emailTemplateList.add(emailTemplate);
         });
-        emailService.sendEmails(emailTemplateList);
+        emailTemplateList.forEach(emailTemplate -> {
+            emailService.sendEmail(emailTemplate.getEmail(), emailTemplate.getSubject(), emailTemplate.getBody());
+        });
     }
 
     private EmailTemplate buildEmailTemplateByUsername(String username, String email) {
