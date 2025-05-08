@@ -1,8 +1,8 @@
 package com.example.springlearnings.services.impl;
 
 import com.example.springlearnings.entity.User;
-import com.example.springlearnings.persistence.IUserRepository;
-import com.example.springlearnings.persistence.UserRepositoryImpl;
+import com.example.springlearnings.persistence.impl.UserRepositoryImpl;
+import com.example.springlearnings.persistence.interfaces.IUserRepository;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
 import com.example.springlearnings.services.interfaces.IUserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;

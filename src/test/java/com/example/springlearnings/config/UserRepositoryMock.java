@@ -1,7 +1,7 @@
 package com.example.springlearnings.config;
 
 import com.example.springlearnings.entity.User;
-import com.example.springlearnings.persistence.IUserRepository;
+import com.example.springlearnings.persistence.interfaces.IUserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;

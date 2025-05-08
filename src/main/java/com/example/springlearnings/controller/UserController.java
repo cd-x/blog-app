@@ -5,6 +5,8 @@ import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.entity.User;
 import com.example.springlearnings.services.errorhandling.exceptions.UserAlreadyExistException;
 import com.example.springlearnings.services.interfaces.IUserManagementService;
+import com.example.springlearnings.services.pricing.interfaces.IJournalPricingService;
+import com.example.springlearnings.services.pricing.models.Pricing;
 import com.example.springlearnings.utils.ControllerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private IUserManagementService userManagementService;
+    @Autowired
+    private IJournalPricingService journalPricingService;
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping
@@ -51,5 +55,10 @@ public class UserController {
     public ResponseEntity<List<Journal>> getJournalsByUsername() {
         User user = userManagementService.getUserByUserName(ControllerUtils.getUsernameFromSecurityContext());
         return new ResponseEntity<>(user.getJournalList(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/pricing")
+    public ResponseEntity<List<Pricing>> getPricingList() {
+        return ResponseEntity.ok(journalPricingService.getPricing());
     }
 }

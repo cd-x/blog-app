@@ -1,7 +1,7 @@
 package com.example.springlearnings.config;
 
 import com.example.springlearnings.entity.Journal;
-import com.example.springlearnings.persistence.IJournalRepository;
+import com.example.springlearnings.persistence.interfaces.IJournalRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

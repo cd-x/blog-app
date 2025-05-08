@@ -1,4 +1,4 @@
-package com.example.springlearnings.persistence;
+package com.example.springlearnings.persistence.interfaces;
 
 import com.example.springlearnings.entity.Journal;
 import org.springframework.data.mongodb.repository.MongoRepository;

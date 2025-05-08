@@ -1,4 +1,4 @@
-package com.example.springlearnings.persistence;
+package com.example.springlearnings.persistence.impl;
 
 import com.example.springlearnings.entity.User;
 import lombok.extern.slf4j.Slf4j;

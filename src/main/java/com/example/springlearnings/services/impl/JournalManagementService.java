@@ -2,7 +2,7 @@ package com.example.springlearnings.services.impl;
 
 import com.example.springlearnings.api.models.JournalPayload;
 import com.example.springlearnings.entity.Journal;
-import com.example.springlearnings.persistence.IJournalRepository;
+import com.example.springlearnings.persistence.interfaces.IJournalRepository;
 import com.example.springlearnings.services.interfaces.IJournalManagementService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

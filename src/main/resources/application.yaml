@@ -1,5 +1,8 @@
 spring:
   data:
+    redis:
+      host: localhost
+      port: 6379
     mongodb:
       uri: ${MONGODB_URI}
       database: 'journaldb'
@@ -19,3 +22,5 @@ config:
     port: 587
     username: ${USERNAME}
     password: ${APP_PASSWORD}
+
+

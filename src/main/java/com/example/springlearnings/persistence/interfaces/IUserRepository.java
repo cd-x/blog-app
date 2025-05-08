@@ -1,4 +1,4 @@
-package com.example.springlearnings.persistence;
+package com.example.springlearnings.persistence.interfaces;
 
 import com.example.springlearnings.entity.User;
 import org.bson.types.ObjectId;

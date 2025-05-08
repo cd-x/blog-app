@@ -1,7 +1,7 @@
 package com.example.springlearnings.security;
 
 import com.example.springlearnings.entity.User;
-import com.example.springlearnings.persistence.IUserRepository;
+import com.example.springlearnings.persistence.interfaces.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
