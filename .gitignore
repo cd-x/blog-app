@@ -37,5 +37,4 @@ build/
 mvnw
 mvnw.cmd
 
-
-
+redis-data/
