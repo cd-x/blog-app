@@ -11,7 +11,7 @@ public class WeeklySentimentScheduler {
     @Autowired
     private IPublishSentimentService publishSentimentService;
 
-    @Scheduled(cron = "0 0/1 * 1/1 * ?")
+    @Scheduled(cron = "0 0 12 ? * SUN")
     public void publishSentiments() {
         publishSentimentService.publishWeeklyJournalSentiments();
     }
