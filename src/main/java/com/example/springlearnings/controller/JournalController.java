@@ -73,6 +73,6 @@ public class JournalController {
 
     @GetMapping(path = "/search")
     public List<Journal> searchJournals(@RequestParam String query) {
-        return journalSearchService.searchJournals(query);
+        return journalSearchService.searchJournals(query, ControllerUtils.getUsernameFromSecurityContext());
     }
 }
