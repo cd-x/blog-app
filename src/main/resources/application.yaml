@@ -7,6 +7,10 @@ spring:
       uri: ${MONGODB_URI}
       database: 'journaldb'
       auto-index-creation: true
+    elasticsearch:
+      client:
+        reactive: false
+      uris: ${ELASTICSEARCH_URI}
 
 # Logging
 logging:

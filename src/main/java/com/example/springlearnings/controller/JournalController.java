@@ -4,6 +4,7 @@ import com.example.springlearnings.api.models.JournalPayload;
 import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.services.errorhandling.exceptions.UserDoesNotExistException;
 import com.example.springlearnings.services.interfaces.IJournalManagementService;
+import com.example.springlearnings.services.interfaces.IJournalSearchService;
 import com.example.springlearnings.services.interfaces.IUserManagementService;
 import com.example.springlearnings.utils.ControllerUtils;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -22,6 +24,8 @@ public class JournalController {
     private IJournalManagementService journalManagementService;
     @Autowired
     private IUserManagementService userManagementService;
+    @Autowired
+    private IJournalSearchService journalSearchService;
 
     private final Logger LOGGER = LoggerFactory.getLogger(JournalController.class);
 
@@ -41,6 +45,8 @@ public class JournalController {
     public ResponseEntity<String> createJournal(@RequestBody JournalPayload payload) throws UserDoesNotExistException {
         LOGGER.debug("JournalController::createJournal with payload: {}", payload);
         String id = journalManagementService.createJournal(payload, ControllerUtils.getUsernameFromSecurityContext());
+        Journal journal = journalManagementService.getJournalById(id);
+        journalSearchService.updateJournalsIndex(journal);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 
@@ -63,5 +69,10 @@ public class JournalController {
         String username = ControllerUtils.getUsernameFromSecurityContext();
         return userManagementService.getUserByUserName(username)
                 .getJournalList().stream().noneMatch(journal -> id.equalsIgnoreCase(journal.getId()));
+    }
+
+    @GetMapping(path = "/search")
+    public List<Journal> searchJournals(@RequestParam String query) {
+        return journalSearchService.searchJournals(query);
     }
 }
