@@ -64,3 +64,26 @@ services:
 volumes:
   esdata:
 ```
+
+---
+
+### Message Queue
+
+Kafka in KRaft mode used to decouple ES updates from Mongo Updates
+
+```yaml
+version: '3'
+
+services:
+  kafka:
+    image: bitnami/kafka:latest
+    environment:
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:9093
+      - KAFKA_KRAFT_CLUSTER_ID=my-cluster-id
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    ports:
+      - "9092:9092"
+
+```
