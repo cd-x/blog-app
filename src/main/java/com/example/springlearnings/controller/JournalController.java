@@ -45,8 +45,6 @@ public class JournalController {
     public ResponseEntity<String> createJournal(@RequestBody JournalPayload payload) throws UserDoesNotExistException {
         LOGGER.debug("JournalController::createJournal with payload: {}", payload);
         String id = journalManagementService.createJournal(payload, ControllerUtils.getUsernameFromSecurityContext());
-        Journal journal = journalManagementService.getJournalById(id);
-        journalSearchService.updateJournalsIndex(journal);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 

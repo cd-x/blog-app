@@ -3,7 +3,9 @@ package com.example.springlearnings.services.impl;
 import com.example.springlearnings.api.models.JournalPayload;
 import com.example.springlearnings.entity.Journal;
 import com.example.springlearnings.persistence.interfaces.IJournalRepository;
+import com.example.springlearnings.services.constants.Constants;
 import com.example.springlearnings.services.interfaces.IJournalManagementService;
+import com.example.springlearnings.services.messagequeue.KafkaProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.Objects;
 public class JournalManagementService implements IJournalManagementService {
     @Autowired
     private TransactionService transactionService;
+    @Autowired
+    private KafkaProducer kafkaProducer;
 
     @Autowired
     private IJournalRepository journalRepository;
@@ -36,6 +40,7 @@ public class JournalManagementService implements IJournalManagementService {
     public String createJournal(JournalPayload journalPayload, String username) {
         String id = transactionService.createJournal(journalPayload, username);
         logger.debug("New journal created with id: {}", id);
+        kafkaProducer.sendMessage(Constants.JOURNAL_TOPIC, id);
         return id;
     }
 
