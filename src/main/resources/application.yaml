@@ -1,21 +1,31 @@
 spring:
   data:
+
+    # cache
     redis:
       host: localhost
       port: 6379
+
+    # mongo database configurations
     mongodb:
       uri: ${MONGODB_URI}
       database: 'journaldb'
       auto-index-creation: true
+
+    # elasticsearch configurations
     elasticsearch:
       client:
         reactive: false
       uris: ${ELASTICSEARCH_URI}
+
+    # kafka configurations
     kafka:
+      bootstrap-servers: ${KAFKA_URI}
       producer:
         key-serializer: org.apache.kafka.common.serialization.StringSerializer
         value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       consumer:
+        group-id: 'journals'
         key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
         properties:

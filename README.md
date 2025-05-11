@@ -10,6 +10,7 @@
 | APP_PASSWORD             	 | NA                	 | String: Gmail App Password                                        	 | To send out emails for wekly <br>journal sentiment            	 |
 | ELASTICSEARCH_URI        	 | NA                	 | String: elastic search uri e.g. <br>        http://localhost:9200 	 | To index journals and provide <br>search ability to end users 	 |
 | USERNAME                   | NA                  | String: gmail username <br> from which emails will  dessiminated    | To send out emails for weekly sentiment                         |
+| KAFKA_URI                  | NA                  | String: kafka host and port                                         | message queue to synchronize elasticsearch                      |
 
 ---
 
